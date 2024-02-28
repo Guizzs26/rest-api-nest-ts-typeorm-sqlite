@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+In this project i will build an API using the Repository design pattern to manipulate the database.
 
 ## Installation
 
