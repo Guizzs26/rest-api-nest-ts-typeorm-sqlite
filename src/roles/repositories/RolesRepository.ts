@@ -1,11 +1,13 @@
+import { Injectable } from '@nestjs/common';
 import { Role } from '@roles/entities/role.entity';
 
 const roles: Role[] = [];
 
-type createRoleDto = {
+export type createRoleDto = {
   name: string;
 };
 
+@Injectable()
 export class RolesRepository {
   private roles: Role[];
 
@@ -31,6 +33,8 @@ export class RolesRepository {
   }
 
   findByName(name: string): Role | undefined {
-    return this.roles.find((role) => role.name === name);
+    const role = this.roles.find((role) => role.name === name);
+
+    return role;
   }
 }

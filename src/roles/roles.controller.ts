@@ -1,25 +1,14 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { Role } from './entities/role.entity';
-import { RolesRepository } from './repositories/RolesRepository';
+import { RolesService } from './roles.service';
 
-const rolesRepository = new RolesRepository();
 @Controller('roles')
 export class RolesController {
+  constructor(private readonly rolesService: RolesService) {}
+
   @Post()
-  create(@Body() { name }): Role {
-    const roleAlreadyExists = rolesRepository.findByName(name);
-
-    if (roleAlreadyExists) {
-      throw new HttpException('Role already exists', HttpStatus.CONFLICT);
-    }
-
-    const role = rolesRepository.create({ name });
+  show(@Body() { name }): Role {
+    const role = this.rolesService.create({ name });
 
     return role;
   }
