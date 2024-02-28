@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Role } from './entities/role.entity';
 import { RolesService } from './roles.service';
 
@@ -7,9 +7,16 @@ export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 
   @Post()
-  show(@Body() { name }): Role {
+  store(@Body() { name }): Role {
     const role = this.rolesService.create({ name });
 
     return role;
+  }
+
+  @Get()
+  index(): Role[] {
+    const roles = this.rolesService.findAll();
+
+    return roles;
   }
 }

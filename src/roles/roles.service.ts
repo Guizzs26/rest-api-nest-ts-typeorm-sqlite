@@ -19,4 +19,8 @@ export class RolesService {
 
     return this.rolesRepository.create({ name });
   }
+
+  findAll(): Role[] {
+    return this.rolesRepository.findAll();
+  }
 }
