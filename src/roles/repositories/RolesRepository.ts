@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Role } from '@roles/entities/role.entity';
+import { CreateRoleDTO } from '@roles/DTO/createRoleDTO';
 
 const roles: Role[] = [];
-
-export type createRoleDto = {
-  name: string;
-};
 
 @Injectable()
 export class RolesRepository {
@@ -15,7 +12,7 @@ export class RolesRepository {
     this.roles = [];
   }
 
-  create({ name }: createRoleDto): Role {
+  create({ name }: CreateRoleDTO): Role {
     const role = new Role();
 
     Object.assign(role, {
