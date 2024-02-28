@@ -1,17 +1,18 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { v4 as uuidv4 } from 'uuid';
+import { Role } from './entities/role.entity';
 
-const roles = [];
+const roles: Role[] = [];
 
 @Controller('roles')
 export class RolesController {
   @Post()
-  create(@Body() { name }) {
-    const role = {
-      id: uuidv4(),
+  create(@Body() { name }): Role {
+    const role = new Role();
+
+    Object.assign(role, {
       name,
       created_at: new Date(),
-    };
+    });
 
     roles.push(role);
 
