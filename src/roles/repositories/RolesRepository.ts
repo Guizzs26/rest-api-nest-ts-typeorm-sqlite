@@ -2,21 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRoleDTO } from '@roles/DTO/createRoleDTO';
 import { Role } from '@roles/entities/role.entity';
-import { skip } from 'node:test';
+import { PaginateParams, RolesPaginateProperties } from '@roles/ts-types/types';
 import { Repository } from 'typeorm';
-
-export type PaginateParams = {
-  page: number;
-  skip: number;
-  take: number;
-};
-
-export type RolesPaginateProperties = {
-  per_page: number;
-  total: number;
-  current_page: number;
-  data: Role[];
-};
 
 @Injectable()
 export class RolesRepository {

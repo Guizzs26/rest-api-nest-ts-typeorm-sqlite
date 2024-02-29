@@ -1,28 +1,18 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import {
   RolesPaginateProperties,
-  RolesRepository,
-} from './repositories/RolesRepository';
+  ShowRoleParams,
+  ListRolesUseCaseParams,
+  DeleteRoleParams,
+} from './ts-types/types';
 import { Role } from './entities/role.entity';
 import { CreateRoleDTO } from './DTO/createRoleDTO';
 import { UpdateRoleDTO } from './DTO/UpdateRoleDTO';
-
-type ShowRoleParams = {
-  id: string;
-};
-
-type DeleteRoleParams = {
-  id: string;
-};
-
-type ListRolesUseCaseParams = {
-  page: number;
-  limit: number;
-};
+import { IRolesRepository } from './repositories/IRoleRepository';
 
 @Injectable()
 export class RolesService {
-  constructor(private readonly rolesRepository: RolesRepository) {}
+  constructor(private readonly rolesRepository: IRolesRepository) {}
 
   async create({ name }: CreateRoleDTO): Promise<Role> {
     const roleAlreadyExists = await this.rolesRepository.findByName(name);
