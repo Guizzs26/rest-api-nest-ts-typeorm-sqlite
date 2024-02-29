@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateRoleDTO } from '@roles/DTO/createRoleDTO';
-import { Role } from '@roles/entities/role.entity';
 import { PaginateParams, RolesPaginateProperties } from '@roles/ts-types/types';
+import { CreateRoleDTO } from '@roles/DTO/createRoleDTO';
 import { Repository } from 'typeorm';
 import { IRolesRepository } from './IRoleRepository';
+import { Role } from '@roles/entities/role.entity';
 
 @Injectable()
 export class RolesRepository implements IRolesRepository {

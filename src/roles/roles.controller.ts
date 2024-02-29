@@ -10,8 +10,7 @@ import {
 } from '@nestjs/common';
 import { Role } from './entities/role.entity';
 import { RolesService } from './roles.service';
-import { CreateRoleDTO } from './DTO/createRoleDTO';
-
+import { CreateRoleDTO } from '@roles/DTO/CreateRoleDTO';
 @Controller('roles')
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {}

@@ -13,15 +13,15 @@ export type RolesPaginateProperties = {
   data: Role[];
 };
 
+export type ListRolesUseCaseParams = {
+  page: number;
+  limit: number;
+};
+
 export type ShowRoleParams = {
   id: string;
 };
 
 export type DeleteRoleParams = {
   id: string;
-};
-
-export type ListRolesUseCaseParams = {
-  page: number;
-  limit: number;
 };

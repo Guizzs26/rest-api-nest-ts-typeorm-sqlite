@@ -5,9 +5,9 @@ import {
   ListRolesUseCaseParams,
   DeleteRoleParams,
 } from './ts-types/types';
+import { CreateRoleDTO } from '@roles/DTO/CreateRoleDTO';
+import { UpdateRoleDTO } from '@roles/DTO/UpdateRoleDTO';
 import { Role } from './entities/role.entity';
-import { CreateRoleDTO } from './DTO/createRoleDTO';
-import { UpdateRoleDTO } from './DTO/UpdateRoleDTO';
 import { IRolesRepository } from './repositories/IRoleRepository';
 
 @Injectable()
