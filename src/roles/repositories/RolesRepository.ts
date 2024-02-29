@@ -4,9 +4,10 @@ import { CreateRoleDTO } from '@roles/DTO/createRoleDTO';
 import { Role } from '@roles/entities/role.entity';
 import { PaginateParams, RolesPaginateProperties } from '@roles/ts-types/types';
 import { Repository } from 'typeorm';
+import { IRolesRepository } from './IRoleRepository';
 
 @Injectable()
-export class RolesRepository {
+export class RolesRepository implements IRolesRepository {
   constructor(
     @InjectRepository(Role)
     private rolesRepository: Repository<Role>,
