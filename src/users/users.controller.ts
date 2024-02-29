@@ -1,8 +1,9 @@
 import { Controller, Body, Post, Get, Query, HttpCode } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDTO } from './DTO/CreateUserDTO';
-import { User } from './entities/User';
+import { User } from './entities/user.entity';
 import { UsersPaginateProperties } from './ts-types/users.types';
+import { GetUserDTO } from './DTO/GetUsersDTO';
 
 @Controller('users')
 export class UsersController {
@@ -25,10 +26,9 @@ export class UsersController {
 
   @Get()
   async index(
-    @Query('page') page: number = 1,
-    @Query('limit') limit: number = 15,
+    @Query() { limit = 15, page = 1 }: GetUserDTO,
   ): Promise<UsersPaginateProperties> {
-    const usersPagination = await this.usersService.findAll({ page, limit });
+    const usersPagination = await this.usersService.findAll({ limit, page });
 
     return usersPagination;
   }

@@ -1,5 +1,5 @@
 import { CreateUserDTO } from '@users/DTO/CreateUserDTO';
-import { User } from '@users/entities/User';
+import { User } from '@users/entities/user.entity';
 import {
   PaginateParams,
   UsersPaginateProperties,

@@ -7,7 +7,7 @@ import {
   ListUsersServiceParams,
   UsersPaginateProperties,
 } from './ts-types/users.types';
-import { User } from './entities/User';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -62,6 +62,13 @@ export class UsersService {
     limit,
     page,
   }: ListUsersServiceParams): Promise<UsersPaginateProperties> {
+    if (typeof limit !== 'number' || typeof page !== 'number') {
+      throw new HttpException(
+        'Invalid limit or page value',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     const take = limit;
 
     const skip = (Number(page) - 1) * take;
