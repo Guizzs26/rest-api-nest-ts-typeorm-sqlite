@@ -4,9 +4,15 @@ import {
   RolesRepository,
 } from './repositories/RolesRepository';
 import { Role } from './entities/role.entity';
+import { CreateRoleDTO } from './DTO/createRoleDTO';
+import { UpdateRoleDTO } from './DTO/UpdateRoleDTO';
 
-type CreateRoleDTO = {
-  name: string;
+type ShowRoleParams = {
+  id: string;
+};
+
+type DeleteRoleParams = {
+  id: string;
 };
 
 type ListRolesUseCaseParams = {
@@ -36,5 +42,48 @@ export class RolesService {
     const skip = (Number(page) - 1) * take;
 
     return this.rolesRepository.findAll({ page, skip, take });
+  }
+
+  async findOne({ id }: ShowRoleParams): Promise<Role> {
+    const role = await this.rolesRepository.findById(id);
+
+    if (!role) {
+      throw new HttpException('Role not found', HttpStatus.NOT_FOUND);
+    }
+
+    return role;
+  }
+
+  async update({ id, name }: UpdateRoleDTO): Promise<Role> {
+    const role = await this.rolesRepository.findById(id);
+
+    if (!role) {
+      throw new HttpException('Role not found', HttpStatus.NOT_FOUND);
+    }
+
+    const roleWithSameName = await this.rolesRepository.findByName(name);
+
+    if (roleWithSameName && role.name !== roleWithSameName.name) {
+      throw new HttpException(
+        'Role name not informed or already in use',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    role.name = name;
+
+    await this.rolesRepository.save(role);
+
+    return role;
+  }
+
+  async delete({ id }: DeleteRoleParams): Promise<void> {
+    const role = await this.rolesRepository.findById(id);
+
+    if (!role) {
+      throw new HttpException('Role not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.rolesRepository.delete(role);
   }
 }

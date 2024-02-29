@@ -1,4 +1,13 @@
-import { Controller, Body, Query, Get, Post } from '@nestjs/common';
+import {
+  Controller,
+  Body,
+  Query,
+  Param,
+  Get,
+  Post,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { Role } from './entities/role.entity';
 import { RolesService } from './roles.service';
 import { CreateRoleDTO } from './DTO/createRoleDTO';
@@ -15,7 +24,7 @@ export class RolesController {
   }
 
   @Get()
-  async findAll(
+  async index(
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 15,
   ): Promise<Role[]> {
@@ -23,5 +32,31 @@ export class RolesController {
     const { data } = await this.rolesService.findAll({ page, limit });
 
     return data;
+  }
+
+  @Get(':id')
+  async show(@Param('id') id: string): Promise<Role> {
+    const role = await this.rolesService.findOne({ id });
+
+    return role;
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() { name }: CreateRoleDTO,
+  ): Promise<Role> {
+    const role = await this.rolesService.update({ id, name });
+
+    return role;
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string): Promise<object> {
+    await this.rolesService.delete({ id });
+
+    return {
+      message: 'Role deleted',
+    };
   }
 }
