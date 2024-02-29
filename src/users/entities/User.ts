@@ -1,7 +1,9 @@
+import { Role } from '@roles/entities/role.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -30,6 +32,11 @@ export class User {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToOne(() => Role, {
+    cascade: true,
+  })
+  role: Role;
 
   constructor() {
     if (!this.id) {
