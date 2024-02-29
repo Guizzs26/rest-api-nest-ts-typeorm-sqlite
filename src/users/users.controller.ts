@@ -4,6 +4,7 @@ import { CreateUserDTO } from './DTO/CreateUserDTO';
 import { User } from './entities/user.entity';
 import { UsersPaginateProperties } from './ts-types/users.types';
 import { GetUserDTO } from './DTO/GetUsersDTO';
+import { instanceToInstance } from 'class-transformer';
 
 @Controller('users')
 export class UsersController {
@@ -30,6 +31,6 @@ export class UsersController {
   ): Promise<UsersPaginateProperties> {
     const usersPagination = await this.usersService.findAll({ limit, page });
 
-    return usersPagination;
+    return instanceToInstance(usersPagination);
   }
 }
