@@ -1,5 +1,8 @@
 import { CreateRoleDTO } from '@roles/DTO/createRoleDTO';
-import { PaginateParams, RolesPaginateProperties } from '@roles/ts-types/types';
+import {
+  PaginateParams,
+  RolesPaginateProperties,
+} from '@roles/ts-types/roles.types';
 import { Role } from '@roles/entities/role.entity';
 
 export interface IRolesRepository {

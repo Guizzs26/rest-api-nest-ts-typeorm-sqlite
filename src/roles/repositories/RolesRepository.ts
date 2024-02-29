@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PaginateParams, RolesPaginateProperties } from '@roles/ts-types/types';
+import {
+  PaginateParams,
+  RolesPaginateProperties,
+} from '@roles/ts-types/roles.types';
 import { CreateRoleDTO } from '@roles/DTO/CreateRoleDTO';
 import { Repository } from 'typeorm';
 import { IRolesRepository } from './IRoleRepository';

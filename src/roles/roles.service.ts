@@ -4,7 +4,7 @@ import {
   ShowRoleParams,
   ListRolesUseCaseParams,
   DeleteRoleParams,
-} from './ts-types/types';
+} from './ts-types/roles.types';
 import { CreateRoleDTO } from '@roles/DTO/CreateRoleDTO';
 import { UpdateRoleDTO } from '@roles/DTO/UpdateRoleDTO';
 import { Role } from './entities/role.entity';
