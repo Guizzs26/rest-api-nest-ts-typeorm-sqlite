@@ -2,13 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
 @Entity('roles')
 export class Role {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id?: string;
 
   @Column()
