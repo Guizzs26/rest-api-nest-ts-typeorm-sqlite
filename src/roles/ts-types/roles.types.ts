@@ -13,7 +13,7 @@ export type RolesPaginateProperties = {
   data: Role[];
 };
 
-export type ListRolesUseCaseParams = {
+export type ListRolesServiceParams = {
   page: number;
   limit: number;
 };

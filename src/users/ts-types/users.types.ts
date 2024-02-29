@@ -12,3 +12,16 @@ export type UsersPaginateProperties = {
   current_page: number;
   data: User[];
 };
+
+export type ListUsersServiceParams = {
+  page: number;
+  limit: number;
+};
+
+export type CreateUserDtoService = {
+  name: string;
+  email: string;
+  password: string;
+  isAdmin: boolean;
+  roleId: string;
+};

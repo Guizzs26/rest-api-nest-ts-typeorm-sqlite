@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import {
   RolesPaginateProperties,
   ShowRoleParams,
-  ListRolesUseCaseParams,
+  ListRolesServiceParams,
   DeleteRoleParams,
 } from './ts-types/roles.types';
 import { CreateRoleDTO } from '@roles/DTO/CreateRoleDTO';
@@ -30,7 +30,7 @@ export class RolesService {
   async findAll({
     limit,
     page,
-  }: ListRolesUseCaseParams): Promise<RolesPaginateProperties> {
+  }: ListRolesServiceParams): Promise<RolesPaginateProperties> {
     const take = limit;
     const skip = (Number(page) - 1) * take;
 

@@ -11,6 +11,7 @@ import {
 import { Role } from './entities/role.entity';
 import { RolesService } from './roles.service';
 import { CreateRoleDTO } from '@roles/DTO/CreateRoleDTO';
+import { RolesPaginateProperties } from './ts-types/roles.types';
 @Controller('roles')
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
@@ -26,11 +27,11 @@ export class RolesController {
   async index(
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 15,
-  ): Promise<Role[]> {
+  ): Promise<RolesPaginateProperties> {
     // Se page ou limit não forem números válidos, o NestJS atribuirá seus valores padrão (1 e 15, respectivamente)
-    const { data } = await this.rolesService.findAll({ page, limit });
+    const rolesPagination = await this.rolesService.findAll({ page, limit });
 
-    return data;
+    return rolesPagination;
   }
 
   @Get(':id')

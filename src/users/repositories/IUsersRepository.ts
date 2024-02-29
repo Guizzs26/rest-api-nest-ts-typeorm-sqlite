@@ -22,9 +22,11 @@ export interface IUsersRepository {
     take,
   }: PaginateParams): Promise<UsersPaginateProperties>;
 
+  delete(user: User): Promise<void>;
+
   findById(id: string): Promise<User | null>;
 
   findByName(name: string): Promise<User | null>;
 
-  delete(user: User): Promise<void>;
+  findByEmail(email: string): Promise<User | null>;
 }

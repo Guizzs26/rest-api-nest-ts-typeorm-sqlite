@@ -5,7 +5,7 @@ import {
   IsNotEmpty,
   IsString,
   IsStrongPassword,
-  Validate,
+  IsUUID,
 } from 'class-validator';
 
 export class CreateUserDTO {
@@ -26,7 +26,13 @@ export class CreateUserDTO {
   password: string;
 
   @IsBoolean({ message: 'O campo isAdmin deve ser um booleano' })
+  @IsNotEmpty({ message: 'O campo password não pode estar vazio' })
   isAdmin: boolean;
 
-  role: Role;
+  @IsUUID()
+  @IsString({ message: 'O campo roleId deve ser uma string' })
+  @IsNotEmpty({ message: 'O campo roleId não pode estar vazio' })
+  roleId?: string;
+
+  role?: Role;
 }
